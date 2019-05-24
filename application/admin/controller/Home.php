@@ -7,6 +7,11 @@ use think\Controller;
 
 class Home extends Controller
 {
+
+    function Test()
+    {
+    }
+
     function login()
     {
 
