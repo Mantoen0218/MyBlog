@@ -9,6 +9,8 @@ use think\Controller;
 class Index extends Controller
 {
 
+    function test(){}
+    
     function index()
     {
 
