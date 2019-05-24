@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>风和树里-个人信息</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="../image/png" href="{$Think.ASSETS}/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="{$Think.ASSETS}/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="{$Think.ASSETS}/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{$Think.ASSETS}/css/admin.css">
+    <link rel="stylesheet" href="{$Think.ASSETS}/css/app.css">
+</head>
+
+<body data-type="generalComponents">
+
+
+{include file='../application/admin/view/public/header.html'}
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+    {include file='../application/admin/view/public/nav.html' action='密码修改' type = '个人信息' }
+
+
+    <div class="tpl-content-wrapper">
+
+        <div class="tpl-content-page-title">
+            个人信息
+        </div>
+        <ol class="am-breadcrumb">
+            <li><a href="#" class="am-icon-home">首页</a></li>
+            <li><a>个人信息</a></li>
+            <li><a href="#">信息管理</a></li>
+        </ol>
+
+        <div class="tpl-portlet-components">
+            <div class="portlet-title">
+
+            </div>
+
+            <div class="tpl-block ">
+
+                <div class="am-g tpl-amazeui-form">
+
+
+                    <div class="am-u-sm-12 am-u-md-9">
+                        <form class="am-form am-form-horizontal" action="Index/index" method="post"
+                              enctype="multipart/form-data">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">昵称 / Name</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" name="nickname" id="user-name"
+                                           value="{$Think.session.loginUser['nickname']}" placeholder="姓名 / Name">
+                                    <small>输入你的名字，让我们记住你。</small>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="user-email" class="am-u-sm-3 am-form-label">电子邮件 / Email</label>
+                                <div class="am-u-sm-9">
+                                    <input type="email" name="email" id="user-email"
+                                           value="{$Think.session.loginUser['email']}" placeholder="输入你的电子邮件 / Email">
+                                    <small>邮箱你懂得...</small>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group" style="margin-top: 4rem">
+
+                                <label for="user-email" class="am-u-sm-3 am-form-label">原头像 / Icon</label>
+
+                                <div class="am-u-sm-9" style="margin-bottom: 2rem">
+                                    <img id="backimg" class="am-circle"
+                                         src="{$Think.BLOG}/{$Think.session.loginUser['icon']}"
+                                         width="140" height="140"/>
+                                </div>
+
+                                <label for="user-email" class="am-u-sm-3 am-form-label">修改头像 / Icon</label>
+                                <div class="am-u-sm-9" style="margin-top: 0.5rem">
+                                    <div class="am-form-group am-form-file">
+                                        <i class="am-icon-cloud-upload"></i> 选择要上传的文件，如不修改则使用原头像
+                                        <input type="file" name="icon" multiple="" onchange="reads(this)">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="submit" class="am-btn am-btn-primary">保存修改</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="{$Think.ASSETS}/js/jquery.min.js"></script>
+<script src="{$Think.ASSETS}/js/amazeui.min.js"></script>
+<script src="{$Think.ASSETS}/js/app.js"></script>
+
+<script>
+    function reads(obj) {
+        var file = obj.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (ev) {
+            $("#backimg").attr("src", ev.target.result);
+        }
+    }
+</script>
+
+</body>
+
+</html>

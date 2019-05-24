@@ -1,0 +1,136 @@
+<div class="tpl-left-nav tpl-left-nav-hover">
+    <div class="tpl-left-nav-title">
+        后台管理
+    </div>
+    <div class="tpl-left-nav-list">
+        <ul class="tpl-left-nav-menu">
+
+            <li class="tpl-left-nav-item">
+
+                <a href="{:url('admin/Home/index')}" class="nav-link {eq name = "'[type]'" value='首页'} active {/eq}">
+                <i class="am-icon-home"></i>
+                <span>首页</span>
+                </a>
+
+            </li>
+
+            <li class="tpl-left-nav-item">
+
+                <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-table"></i>
+                    <span>个人信息</span>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right {eq name = "'[type]'"
+                    value='个人信息'} tpl-left-nav-more-ico-rotate {/eq}"></i>
+                </a>
+
+                <ul class="tpl-left-nav-sub-menu" {eq name="'[type]'" value='个人信息' } style="display: block;" {/eq}>
+            <li>
+
+                <a href="{:url('admin/Index/index')}" class="">
+                    <i class="am-icon-angle-right"></i>
+                    <span>信息管理</span>
+                    <i class="tpl-left-nav-content tpl-badge-primary"></i></a>
+
+                <a href="{:url('admin/Index/password_edit')}">
+                    <i class="am-icon-angle-right"></i>
+                    <span>密码修改</span>
+                    <i class="tpl-left-nav-content tpl-badge-primary"></i></a>
+            </li>
+
+        </ul>
+
+        </li>
+
+        <li class="tpl-left-nav-item">
+            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                <i class="am-icon-table"></i>
+                <span>文章管理</span>
+                <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right {eq name = "'[type]'"
+                value='文章管理'} tpl-left-nav-more-ico-rotate {/eq}"></i>
+            </a>
+            <ul class="tpl-left-nav-sub-menu" {eq name="'[type]'" value='文章管理' } style="display: block;" {/eq}>
+        <li>
+
+            <a href="{:url('admin/Article/index')}">
+                <i class="am-icon-angle-right"></i>
+                <span>文章列表</span>
+                <i class="tpl-left-nav-content tpl-badge-primary">5</i></a>
+
+            <a href="{:url('admin/Article/add')}">
+                <i class="am-icon-angle-right"></i>
+                <span>写文章</span>
+                <i class="tpl-left-nav-content tpl-badge-primary"></i></a>
+        </li>
+
+        </ul>
+        </li>
+
+        <li class="tpl-left-nav-item">
+            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                <i class="am-icon-table"></i>
+                <span>类型管理</span>
+                <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right {eq name = "'[type]'"
+                value='类型管理'} tpl-left-nav-more-ico-rotate {/eq}"></i>
+            </a>
+            <ul class="tpl-left-nav-sub-menu" {eq name="'[type]'" value='类型管理' } style="display: block;" {/eq}>
+        <li>
+
+            <a href="{:url('admin/Type/index')}">
+                <i class="am-icon-angle-right"></i>
+                <span>文章类型</span>
+                <i class="tpl-left-nav-content tpl-badge-primary">{$Think.session.type_count}</i></a>
+
+            <a href="{:url('admin/Type/add')}">
+                <i class="am-icon-angle-right"></i>
+                <span>新增类型</span>
+                <i class="tpl-left-nav-content tpl-badge-primary"></i></a>
+        </li>
+
+        </ul>
+        </li>
+
+        <li class="tpl-left-nav-item">
+            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                <i class="am-icon-table"></i>
+                <span>相册管理</span>
+                <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right {eq name = "'[type]'"
+                value='相册管理'} tpl-left-nav-more-ico-rotate {/eq}"></i>
+            </a>
+            <ul class="tpl-left-nav-sub-menu" {eq name="'[type]'" value='相册管理' } style="display: block;" {/eq}>
+        <li>
+
+            <a href="{:url('admin/Photo/index')}">
+                <i class="am-icon-angle-right"></i>
+                <span>照片列表</span>
+                <i class="tpl-left-nav-content tpl-badge-primary">{$Think.session.photo_count}</i></a>
+
+            <a href="{:url('admin/Photo/add')}">
+                <i class="am-icon-angle-right"></i>
+                <span>新增照片</span>
+                <i class="tpl-left-nav-content tpl-badge-primary"></i></a>
+        </li>
+
+        </ul>
+        </li>
+
+        <li class="tpl-left-nav-item">
+            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                <i class="am-icon-wpforms"></i>
+                <span>评论管理</span>
+                <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right {eq name = "'[type]'"
+                value='评论管理'} tpl-left-nav-more-ico-rotate {/eq} "></i>
+            </a>
+            <ul class="tpl-left-nav-sub-menu" {eq name="'[type]'" value='评论管理' } style="display: block;" {/eq}>
+        <li>
+            <a href="{:url('admin/Comment/index')}">
+                <i class="am-icon-angle-right"></i>
+                <span>评论列表</span>
+                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+            </a>
+        </li>
+        </ul>
+        </li>
+
+        </ul>
+    </div>
+</div>

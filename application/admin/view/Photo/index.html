@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>风和树里-相册管理</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="{$Think.ASSETS}/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="{$Think.ASSETS}/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="{$Think.ASSETS}/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{$Think.ASSETS}/css/admin.css">
+    <link rel="stylesheet" href="{$Think.ASSETS}/css/app.css">
+</head>
+
+<body data-type="generalComponents">
+
+
+{include file='../application/admin/view/public/header.html'}
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+    {include file='../application/admin/view/public/nav.html' action='照片列表' type = '相册管理' }
+
+    <div class="tpl-content-wrapper">
+        <div class="tpl-content-page-title">
+            相册管理
+        </div>
+        <ol class="am-breadcrumb">
+            <li><a href="#" class="am-icon-home">首页</a></li>
+            <li><a href="#">相册管理</a></li>
+            <li class="am-active">照片列表</li>
+        </ol>
+
+        <div class="tpl-portlet-components">
+            <div class="tpl-block">
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-6">
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                <button type="button" onclick="javascript:location='{:url(\'admin/Photo/add\')}'"
+                                        class="am-btn am-btn-default am-btn-success"><span
+                                        class="am-icon-plus"></span> 新增
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-g" style="margin-top: 2rem">
+
+                    <div class="tpl-table-images">
+
+                        {volist name="photo_arr" id="photo"}
+
+                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                            <div class="tpl-table-images-content">
+                                <div class="tpl-table-images-content-i-time">发布时间：{$photo['photoTime']}</div>
+                                <div class="tpl-i-title">
+                                    {$photo['photoTitle']}
+                                </div>
+                                <a href="javascript:;" class="tpl-table-images-content-i">
+                                    <div class="tpl-table-images-content-i-info">
+                                            <span class="ico">
+                                    <img src="{$Think.BLOG}/{$Think.session.loginUser['icon']}" alt="">{$Think.session.loginUser['nickname']}
+                                 </span>
+
+                                    </div>
+                                    <span class="tpl-table-images-content-i-shadow"></span>
+                                    <img src="{$Think.BLOG}/{$photo['photoUrl']}" width="175" height="200" alt="">
+                                </a>
+                                <div class="tpl-table-images-content-block">
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                            <button type="button" id="delete_button"
+                                                    class="am-btn am-btn-default am-btn-danger am-hide-sm-only"
+                                                    data-am-modal="{target: '#delete-{$photo['photoId']}'}">
+                                                <span class="am-icon-trash-o"></span> 删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-modal am-modal-confirm" tabindex="-1" id="delete-{$photo['photoId']}">
+                            <div class="am-modal-dialog">
+                                <div class="am-modal-hd">删除</div>
+                                <div class="am-modal-bd">
+                                    你，确定要删除这条记录吗？
+                                </div>
+                                <div class="am-modal-footer">
+                                    <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                                    <span onclick="location='{:url(\'admin/Photo/delete_photo\')}?id={$photo[\'photoId\']}'"
+                                          data-am-modal-confirm>确定</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/volist}
+
+                        <div class="am-u-lg-12">
+                            <div class="am-cf">
+
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li class="am-disabled"><a href="#">«</a></li>
+                                        <li class="am-active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">»</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="{$Think.ASSETS}/js/jquery.min.js"></script>
+<script src="{$Think.ASSETS}/js/amazeui.min.js"></script>
+<script src="{$Think.ASSETS}/js/app.js"></script>
+</body>
+
+</html>
