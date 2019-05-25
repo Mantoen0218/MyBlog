@@ -12,13 +12,6 @@ class Article extends Controller
 
     function index()
     {
-
-        $type = new Type();
-
-        $arr = $type::all();
-
-        $this->assign('type_arr',$arr);
-
         return view();
     }
 
@@ -26,7 +19,15 @@ class Article extends Controller
     {
 
         if (request()->isGet()) {
+
+            $type = new Type();
+
+            $arr = $type::all();
+
+            $this->assign('type_arr',$arr);
+
             return view();
+
         } else if (request()->isPost()) {
 
             $title = input('title');
