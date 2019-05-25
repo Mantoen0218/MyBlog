@@ -89,13 +89,18 @@
                                 <label for="article-type" class="am-u-sm-3 am-form-label">文章 / 类型</label>
                                 <div class="am-u-sm-9" style="z-index: 99998">
                                     <select id="article-type" name="type" data-am-selected="{btnSize: 'sm'}">
-                                        <option value="option1">所有类别</option>
+                                        {volist name="type_arr" id="type"}
+
+                                        <option value="{$type['typeid']}">{$type['typename']}</option>
                                         <option value="option2">IT业界</option>
                                         <option value="option3">数码产品</option>
                                         <option value="option3">笔记本电脑</option>
                                         <option value="option3">平板电脑</option>
                                         <option value="option3">只能手机</option>
                                         <option value="option3">超极本</option>
+
+
+                                        {/volist}
                                     </select>
                                     <small>请选择文章类型。</small>
                                 </div>

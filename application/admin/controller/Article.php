@@ -5,12 +5,19 @@ namespace app\admin\controller;
 
 
 use think\Controller;
+use app\home\model\Type;
 
 class Article extends Controller
 {
 
     function index()
     {
+
+        $type = new Type();
+
+        $arr = $type::all();
+
+        $this->assign('type_arr',$arr);
 
         return view();
     }

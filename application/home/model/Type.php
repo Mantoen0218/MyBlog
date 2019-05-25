@@ -9,7 +9,7 @@ use think\Model;
 class Type extends Model
 {
 
-    protected $typeId;
+    protected $typeId = 'typeid';
 
     //自定义初始化
     protected function initialize()
