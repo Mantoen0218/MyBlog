@@ -64,6 +64,7 @@ class Photo extends Controller
                     // 上传失败获取错误信息
                     echo $file->getError();
                 }
+
             }
 
         }
