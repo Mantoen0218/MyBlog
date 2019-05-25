@@ -6,13 +6,32 @@ namespace app\admin\controller;
 
 use think\Controller;
 use app\home\model\Type;
+use app\home\model\Article as modelArticle;
 
 class Article extends Controller
 {
 
     function index()
     {
-        return view();
+
+        $type = new Type();
+        $type_arr = $type::all();
+
+        $typeId = input('typeId');
+        $title = input('title');
+
+        $article_arr = db('article')->paginate(6, false, array(
+            'typeId' => $typeId, // 分页的url额外参数
+        ));
+
+        $this->assign('type_arr', $type_arr);
+
+        $this->assign('title', $title);
+
+        $this->assign('article_arr', $article_arr);
+
+        return $this->fetch();
+
     }
 
     function add()
@@ -24,17 +43,11 @@ class Article extends Controller
 
             $arr = $type::all();
 
-            $this->assign('type_arr',$arr);
+            $this->assign('type_arr', $arr);
 
             return view();
 
         } else if (request()->isPost()) {
-
-            $title = input('title');
-            $content = input('content');
-
-            die();
-
 
             // 获取表单上传文件 例如上传了001.jpg
             $file = request()->file('image');
@@ -46,9 +59,19 @@ class Article extends Controller
 
                 if ($info) {
 
-                    $cover = "images/" . $info->getSaveName();
+                    $article = new modelArticle();
 
+                    $article->title = input('title');
+                    $article->typeId = input('type');
+                    $article->introduction = input('introduction');
+                    $article->content = input('content');
+                    $article->cover = "images/" . $info->getSaveName();
+                    $article->releaseTime = Date('Y-m-d H:i:s');
+                    $article->writer = session('loginUser')['nickname'];
 
+                    $article->save();
+
+                    $this->redirect('admin/Article/index');
 
                 } else {
                     // 上传失败获取错误信息
