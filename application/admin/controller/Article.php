@@ -14,6 +14,10 @@ class Article extends Controller
     function index()
     {
 
+        $article_count = db('article')->count();
+
+        session('article_count', $article_count);
+
         $type = new Type();
         $type_arr = $type::all();
 
@@ -70,6 +74,10 @@ class Article extends Controller
                     $article->writer = session('loginUser')['nickname'];
 
                     $article->save();
+
+                    $article_count = db('article')->count();
+
+                    session('article_count', $article_count);
 
                     $this->redirect('admin/Article/index');
 
@@ -134,6 +142,27 @@ class Article extends Controller
 
             return json($msg);
 
+        }
+
+    }
+
+    function delete_article()
+    {
+
+        $articleId = input('id');
+
+        $res = db('article')->where('articleId', $articleId)->delete();
+
+        if ($res) {
+
+            $article_count = db('article')->count();
+
+            session('article_count', $article_count);
+
+            $this->redirect('admin/Article/index');
+
+        } else {
+            $this->error('删除失败！');
         }
 
     }

@@ -44,7 +44,8 @@
                     <div class="am-u-sm-12 am-u-md-6">
                         <div class="am-btn-toolbar">
                             <div class="am-btn-group am-btn-group-xs">
-                                <button type="button" onclick="javascript:location='{:url(\'admin/Article/add\')}'" class="am-btn am-btn-default am-btn-success"><span
+                                <button type="button" onclick="javascript:location='{:url(\'admin/Article/add\')}'"
+                                        class="am-btn am-btn-default am-btn-success"><span
                                         class="am-icon-plus"></span> 新增
                                 </button>
                             </div>
@@ -64,6 +65,7 @@
                                     <option value="{$type['typeid']}">{$type['typename']}</option>
 
                                     {/volist}
+
                                 </select>
                             </div>
                         </div>
@@ -117,11 +119,26 @@
                                     <button type="button" class="am-btn am-btn-default am-btn-secondary"><span
                                             class="am-icon-edit"></span> 编辑
                                     </button>
-                                    <button type="button" class="am-btn am-btn-default am-btn-danger"><span
+                                    <button type="button" class="am-btn am-btn-default am-btn-danger" data-am-modal="{target: '#delete-{$vo.articleId}'}"><span
                                             class="am-icon-trash-o"></span> 删除
                                     </button>
                                 </div>
                             </div>
+
+                            <div class="am-modal am-modal-confirm" tabindex="-1" id="delete-{$vo.articleId}">
+                                <div class="am-modal-dialog">
+                                    <div class="am-modal-hd">删除</div>
+                                    <div class="am-modal-bd">
+                                        你，确定要删除这条记录吗？
+                                    </div>
+                                    <div class="am-modal-footer">
+                                        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                                        <span onclick="location='{:url(\'admin/Article/delete_article\')}?id={$vo.articleId}'"
+                                              data-am-modal-confirm>确定</span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -131,6 +148,7 @@
                 <div class="am-u-lg-12">
 
                     {$article_arr->render()}
+
                 </div>
 
             </div>

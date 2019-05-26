@@ -12,6 +12,10 @@ class Type extends Controller
     function index()
     {
 
+        $type_count = db('type')->count();
+
+        session('type_count', $type_count);
+
         $type_arr = db('type')->paginate(5);
 
         $this->assign('type_arr', $type_arr);
@@ -61,9 +65,9 @@ class Type extends Controller
 
         $id = input('id');
 
-        $type_arr_count = db('article')->where('typeId',$id)->select();
+        $type_arr_count = db('article')->where('typeId', $id)->select();
 
-        if($type_arr_count){
+        if ($type_arr_count) {
             $this->error('该类型下已有文章，请先删除文章后在删除该类型！');
         }
 
