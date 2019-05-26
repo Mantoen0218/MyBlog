@@ -56,6 +56,9 @@
                         <div class="am-u-sm-12 am-u-md-3">
                             <div class="am-form-group">
                                 <select data-am-selected="{btnSize: 'sm'}" name="typeId">
+
+                                    <option value="0">请选择</option>
+
                                     {volist name="type_arr" id="type"}
 
                                     <option value="{$type['typeid']}">{$type['typename']}</option>

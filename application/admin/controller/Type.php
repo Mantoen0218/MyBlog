@@ -61,6 +61,12 @@ class Type extends Controller
 
         $id = input('id');
 
+        $type_arr_count = db('article')->where('typeId',$id)->select();
+
+        if($type_arr_count){
+            $this->error('该类型下已有文章，请先删除文章后在删除该类型！');
+        }
+
         $res = db('type')->delete($id);
 
         if ($res) {
