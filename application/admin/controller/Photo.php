@@ -16,11 +16,11 @@ class Photo extends Controller
 
         session('photo_count', $photo_count);
 
-        $photo_arr = db('photo')->select();
+        $photo_arr = db('photo')->order('photoTitle asc')->paginate(6);
 
         $this->assign('photo_arr', $photo_arr);
 
-        return view();
+        return $this->fetch();
     }
 
     function add()

@@ -11,7 +11,13 @@ class Index extends Controller
 
     function index()
     {
+
+        $type_arr = db('type')->select();
+
+        session('type_arr', $type_arr);
+
         return view();
+
     }
 
     function article_list()
@@ -21,7 +27,13 @@ class Index extends Controller
 
     function photo()
     {
+
+        $photo_arr = db('photo')->select();
+
+        $this->assign('photo_arr', $photo_arr);
+
         return view();
+
     }
 
     function Timeline()

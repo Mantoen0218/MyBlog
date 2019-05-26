@@ -31,9 +31,9 @@ class Article extends Controller
         $article_arr = [];
 
         if ($typeId == 0) {
-            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->paginate(6);
+            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->order('releaseTime asc')->paginate(6);
         } else {
-            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->where('typeId', $typeId)->paginate(6);
+            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->where('typeId', $typeId)->order('releaseTime asc')->paginate(6);
         }
 
         $this->assign('type_arr', $type_arr);
@@ -250,6 +250,13 @@ class Article extends Controller
             $this->error('非法请求！');
         }
 
+
+    }
+
+    function comment()
+    {
+
+        return view();
 
     }
 

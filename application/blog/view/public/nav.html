@@ -5,21 +5,24 @@
 
     <div class="am-collapse am-topbar-collapse" id="blog-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav">
-            <li {eq name = "'[action]'" value='首页'} class="am-active" {/eq}><a href="{:url('blog/Index/Index')}">首页</a></li>
+            <li {eq name="'[action]'" value='首页' } class="am-active" {/eq}><a href="{:url('blog/Index/Index')}">首页</a></li>
             <li class="am-dropdown" data-am-dropdown>
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                     文章分类 <span class="am-icon-caret-down"></span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="{:url('blog/Index/Article_list')}">全部文章</a></li>
-                    <li><a href="#">文章分类</a></li>
-                    <li><a href="#">文章分类</a></li>
-                    <li><a href="#">文章分类</a></li>
-                    <li><a href="#">文章分类</a></li>
+
+                    {volist name="$Think.session.type_arr" id="type"}
+
+                    <li><a href="#">{$type.typename}</a></li>
+
+                    {/volist}
+
                 </ul>
             </li>
-            <li {eq name = "'[action]'" value='相册'} class="am-active" {/eq}><a href="{:url('blog/Index/Photo')}">相册</a></li>
-            <li {eq name = "'[action]'" value='归档'} class="am-active" {/eq}><a href="{:url('blog/Index/Timeline')}">归档</a></li>
+            <li {eq name="'[action]'" value='相册' } class="am-active" {/eq}><a href="{:url('blog/Index/Photo')}">相册</a></li>
+            <li {eq name="'[action]'" value='归档' } class="am-active" {/eq}><a href="{:url('blog/Index/Timeline')}">归档</a></li>
         </ul>
         <form class="am-topbar-form am-topbar-right am-form-inline" action="Index/Article_search" role="search">
             <div class="am-form-group">
