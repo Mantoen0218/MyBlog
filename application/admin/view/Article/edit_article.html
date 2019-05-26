@@ -96,8 +96,7 @@
 
                                         {volist name="type_arr" id="type"}
 
-                                        <option value="{$type['typeid']}" {if
-                                                condition="$type['typeid'] eq $article.typeId" }selected{/if}>{$type['typename']}</option>
+                                        <option value="{$type['typeid']}" {if condition="$type['typeid'] eq $article.typeId" }selected{/if}>{$type['typename']}</option>
 
                                         {/volist}
                                     </select>

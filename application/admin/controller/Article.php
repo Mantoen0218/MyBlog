@@ -24,13 +24,22 @@ class Article extends Controller
         $typeId = input('typeId');
         $title = input('title');
 
-        $article_arr = db('article')->paginate(6, false, array(
-            'typeId' => $typeId, // 分页的url额外参数
-        ));
+        if ($title == null) {
+            $title = "";
+        }
+
+        $article_arr = [];
+
+        if ($typeId == 0) {
+            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->paginate(6);
+        } else {
+            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->where('typeId', $typeId)->paginate(6);
+        }
 
         $this->assign('type_arr', $type_arr);
 
         $this->assign('title', $title);
+        $this->assign('typeId', $typeId);
 
         $this->assign('article_arr', $article_arr);
 
