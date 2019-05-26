@@ -116,7 +116,7 @@
                             </div>
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                    <button type="button" class="am-btn am-btn-default am-btn-secondary"><span
+                                    <button type="button" class="am-btn am-btn-default am-btn-secondary" onclick="location='{:url(\'admin/Article/edit_article\')}?id={$vo.articleId}'"><span
                                             class="am-icon-edit"></span> 编辑
                                     </button>
                                     <button type="button" class="am-btn am-btn-default am-btn-danger" data-am-modal="{target: '#delete-{$vo.articleId}'}"><span

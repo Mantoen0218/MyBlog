@@ -167,5 +167,81 @@ class Article extends Controller
 
     }
 
+    function edit_article()
+    {
+
+        if (request()->isGet()) {
+
+            $type = new Type();
+            $type_arr = $type::all();
+
+            $articleId = input('id');
+
+            $modelarticle = new modelArticle();
+
+            $article = $modelarticle::get($articleId);
+
+            $this->assign('type_arr', $type_arr);
+            $this->assign('article', $article);
+
+            return view();
+
+        } else if (request()->isPost()) {
+
+            $article = modelArticle::get(input('articleId'));
+
+            // 获取表单上传文件 例如上传了001.jpg
+            $file = request()->file('image');
+
+            if ($file == null) {
+
+                $article->title = input('title');
+                $article->typeId = input('type');
+                $article->introduction = input('introduction');
+                $article->content = input('content');
+                $article->releaseTime = Date('Y-m-d H:i:s');
+                $article->writer = session('loginUser')['nickname'];
+
+                $article->save();
+                $this->redirect('admin/Article/index');
+
+            } else {
+
+                // 移动到框架应用根目录/public/uploads/ 目录下
+                if ($file) {
+
+                    $info = $file->move(ROOT_PATH . '/public/static/blog/images');
+
+                    if ($info) {
+
+
+                        $article->title = input('title');
+                        $article->typeId = input('type');
+                        $article->introduction = input('introduction');
+                        $article->content = input('content');
+                        $article->cover = "images/" . $info->getSaveName();
+                        $article->releaseTime = Date('Y-m-d H:i:s');
+                        $article->writer = session('loginUser')['nickname'];
+
+                        $article->save();
+
+                        $this->redirect('admin/Article/index');
+
+                    } else {
+                        // 上传失败获取错误信息
+                        echo $file->getError();
+                    }
+
+                }
+
+            }
+
+
+        } else {
+            $this->error('非法请求！');
+        }
+
+
+    }
 
 }
