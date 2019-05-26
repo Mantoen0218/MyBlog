@@ -28,7 +28,7 @@ class Index extends Controller
     function photo()
     {
 
-        $photo_arr = db('photo')->select();
+        $photo_arr = db('photo')->order('photoTitle asc')->select();
 
         $this->assign('photo_arr', $photo_arr);
 

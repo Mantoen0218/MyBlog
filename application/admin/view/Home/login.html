@@ -40,6 +40,10 @@
                     <div class="am-form-group">
                         <input type="password" class="" name="password" id="doc-ipt-pwd-1" placeholder="输入密码">
                     </div>
+                    <div class="am-form-group" style="margin-top: 3rem">
+                        <img src="{:captcha_src()}" class="verifyimg reloadverify" alt="captcha" style="margin-bottom: 1rem" />
+                        <input type="text" name="captcha" id="captcha" placeholder="输入验证码">
+                    </div>
                     <p>
                         <button type="submit" class="am-btn am-btn-default">登录</button>
                     </p>
@@ -52,6 +56,21 @@
 <script src="{$Think.ASSETS}/js/jquery.min.js"></script>
 <script src="{$Think.ASSETS}/js/amazeui.min.js"></script>
 <script src="{$Think.ASSETS}/js/app.js"></script>
+
+<script>
+    $(function(){
+        // 刷新验证码
+        var verifyimg = $(".verifyimg").attr("src");
+        $(".reloadverify").click(function(){
+            if( verifyimg.indexOf('?')>0){
+                $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+            }else{
+                $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+            }
+        });
+    })
+</script>
+
 </body>
 
 </html>

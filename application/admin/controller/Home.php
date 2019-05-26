@@ -23,6 +23,10 @@ class Home extends Controller
                 return;
             }
 
+            if (!captcha_check(input('captcha'))) {
+                $this->error('验证码输入错误');
+            }
+
             $arr = db('admin')->where('username', $username)->where('password', $password)->select();
 
             if ($arr != null) {
