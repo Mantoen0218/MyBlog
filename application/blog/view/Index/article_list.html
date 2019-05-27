@@ -43,7 +43,7 @@
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span> @{$article.writer} &nbsp;</span>
                 <span>{$article.releaseTime}</span>
-                <h1><a href="{:url('Blog/Index/article_detail',['articleId'=>$article.articleId])}">{$article.title}</a></h1>
+                <h1><a href="{:url('Blog/Index/article_detail')}?articleId={$article.articleId}">{$article.title}</a></h1>
                 <p>{$article.introduction}
                 </p>
                 <p><a href="" class="blog-continue">continue reading</a></p>

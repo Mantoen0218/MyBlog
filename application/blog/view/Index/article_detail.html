@@ -60,72 +60,55 @@
         <hr>
 
         <ul class="am-pagination blog-article-margin">
-            <li class="am-pagination-prev"><a href="#" class="">&laquo; 一切的回顾</a></li>
-            <li class="am-pagination-next"><a href="">不远的未来 &raquo;</a></li>
+            {if condition="$prev.title neq null"}
+            <li class="am-pagination-prev"><a href="{:url('blog/Index/article_detail')}?articleId={$prev.articleId}"
+                                              class="">&laquo; {$prev.title}</a></li>
+            {/if}
+            {if condition="$next.title neq null"}
+            <li class="am-pagination-next"><a href="{:url('blog/Index/article_detail')}?articleId={$next.articleId}">{$next.title}
+                &raquo;</a></li>
+            {/if}
         </ul>
 
         <hr>
 
-        <div class="am-g blog-author blog-article-margin">
-            <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
-                <img src="{$Think.BLOG}/assets/i/f15.jpg" alt="" class="blog-author-img am-circle">
-            </div>
-            <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
-                <h3><span>Mantoen</span><span style="margin-left: 1rem">回复-></span><span style="margin-left: 1rem"
-                                                                                         class="blog-color">amazeui</span>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-            </div>
-        </div>
+        {volist name="comment" id="comment"}
+
 
         <div class="am-g blog-author blog-article-margin">
             <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
-                <img src="{$Think.BLOG}/assets/i/f15.jpg" alt="" class="blog-author-img am-circle">
+                <img src="{$comment.avatar}" alt="" class="blog-author-img am-circle">
             </div>
             <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
-                <h3><span>Mantoen</span><span style="margin-left: 1rem">回复-></span><span style="margin-left: 1rem"
-                                                                                         class="blog-color">amazeui</span>
+                <h3><span><a href="http://{$comment.reviewerSite}">{$comment.reviewerName}</a></span><span
+                        style="margin-left: 1rem">回复-></span><span style="margin-left: 1rem"
+                                                                   class="blog-color">{$article.writer}</span>
                 </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
+                <p>{$comment.reviewContent}</p>
             </div>
         </div>
 
-        <div class="am-g blog-author blog-article-margin">
-            <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
-                <img src="{$Think.BLOG}/assets/i/f15.jpg" alt="" class="blog-author-img am-circle">
-            </div>
-            <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
-                <h3><span>Mantoen</span><span style="margin-left: 1rem">回复-></span><span style="margin-left: 1rem"
-                                                                                         class="blog-color">amazeui</span>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-            </div>
-        </div>
+        {/volist}
 
         <hr>
 
-        <form class="am-form am-g">
+        <form class="am-form am-g" action="{:url('blog/Index/comment')}" method="post">
+            <input type="hidden" name="articleId" value="{$article.articleId}"/>
             <h3 class="blog-comment">评论</h3>
             <fieldset>
                 <div class="am-form-group am-u-sm-4 blog-clear-left">
-                    <input type="text" class="" placeholder="名字">
+                    <input type="text" name="reviewerName" class="" placeholder="名字">
                 </div>
                 <div class="am-form-group am-u-sm-4">
-                    <input type="email" class="" placeholder="邮箱">
+                    <input type="email" name="reviewerMail" class="" placeholder="邮箱">
                 </div>
 
                 <div class="am-form-group am-u-sm-4 blog-clear-right">
-                    <input type="password" class="" placeholder="网站">
+                    <input type="text" name="reviewerSite" class="" placeholder="网站">
                 </div>
 
                 <div class="am-form-group">
-                    <textarea class="" rows="5" placeholder="一字千金"></textarea>
+                    <textarea class="" rows="5" name="reviewContent" placeholder="一字千金"></textarea>
                 </div>
 
                 <p>

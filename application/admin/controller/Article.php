@@ -160,6 +160,8 @@ class Article extends Controller
 
         $articleId = input('id');
 
+        db('comment')->where('articleId', $articleId)->delete();
+
         $res = db('article')->where('articleId', $articleId)->delete();
 
         if ($res) {
@@ -173,6 +175,7 @@ class Article extends Controller
         } else {
             $this->error('删除失败！');
         }
+
 
     }
 
@@ -256,7 +259,35 @@ class Article extends Controller
     function comment()
     {
 
-        return view();
+        $articleId = input('articleId');
+
+        $comment_arr = db('comment')->where('articleId',$articleId)->order('commentDate asc')->paginate(6,false,['query'=>[
+            'articleId' => $articleId
+        ]]);
+
+        $this->assign('comment_arr', $comment_arr);
+
+        return $this->fetch();
+
+    }
+
+    function delete_comment(){
+
+        $commentId = input('id');
+
+        $res = db('comment')->where('commentId', $commentId)->delete();
+
+        if ($res) {
+
+            $article_count = db('article')->count();
+
+            session('article_count', $article_count);
+
+            $this->redirect('admin/Article/index');
+
+        } else {
+            $this->error('删除失败！');
+        }
 
     }
 
