@@ -16,13 +16,31 @@ class Index extends Controller
 
         session('type_arr', $type_arr);
 
-        return view();
+        $article_arr = db('article')->order('releaseTime asc')->paginate(5);
+
+        $this->assign('article_arr', $article_arr);
+
+        return $this->fetch();
 
     }
 
     function article_list()
     {
-        return view();
+
+        $typeId = input('typeId');
+
+        $article_arr = [];
+
+        if ($typeId == '0') {
+            $article_arr = db('article')->order('releaseTime asc')->paginate(5);
+        } else {
+            $article_arr = db('article')->where('typeId', $typeId)->order('releaseTime asc')->paginate(5);
+        }
+
+        $this->assign('article_arr', $article_arr);
+
+        return $this->fetch();
+
     }
 
     function photo()
@@ -41,9 +59,17 @@ class Index extends Controller
         return view();
     }
 
-    function article_search()
+    function article_detail()
     {
+
+        $articleId = input('articleId');
+
+        $article = db('article')->where('articleId', $articleId)->find();
+
+        $this->assign('article', $article);
+
         return view();
+
     }
 
 }
