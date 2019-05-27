@@ -33,9 +33,13 @@ class Index extends Controller
         $article_arr = [];
 
         if ($typeId == '0') {
-            $article_arr = db('article')->order('releaseTime asc')->paginate(5);
+            $article_arr = db('article')->order('releaseTime asc')->paginate(5, false, ['query' => [
+                'typeId' => $typeId
+            ]]);
         } else {
-            $article_arr = db('article')->where('typeId', $typeId)->order('releaseTime asc')->paginate(5);
+            $article_arr = db('article')->where('typeId', $typeId)->order('releaseTime asc')->paginate(5, false, ['query' => [
+                'typeId' => $typeId
+            ]]);
         }
 
         $this->assign('article_arr', $article_arr);
@@ -67,7 +71,7 @@ class Index extends Controller
 
         $comment = db('comment')->where('articleId', $articleId)->order('commentDate asc')->select();
 
-        for ($i=0;$i<count($comment);$i++){
+        for ($i = 0; $i < count($comment); $i++) {
             $comment[$i]['avatar'] = $this->getGravatar($comment[$i]['reviewerMail']);
         }
 

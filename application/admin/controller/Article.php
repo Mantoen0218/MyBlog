@@ -79,7 +79,7 @@ class Article extends Controller
                     $article->introduction = input('introduction');
                     $article->content = input('content');
                     $article->cover = "images/" . $info->getSaveName();
-                    $article->releaseTime = Date('Y-m-d H:i:s');
+                    $article->releaseTime = date('Y-m-d', time());
                     $article->writer = session('loginUser')['nickname'];
 
                     $article->save();
@@ -211,7 +211,7 @@ class Article extends Controller
                 $article->typeId = input('type');
                 $article->introduction = input('introduction');
                 $article->content = input('content');
-                $article->releaseTime = Date('Y-m-d H:i:s');
+                $article->releaseTime = date('Y-m-d', time());
                 $article->writer = session('loginUser')['nickname'];
 
                 $article->save();
@@ -261,7 +261,7 @@ class Article extends Controller
 
         $articleId = input('articleId');
 
-        $comment_arr = db('comment')->where('articleId',$articleId)->order('commentDate asc')->paginate(6,false,['query'=>[
+        $comment_arr = db('comment')->where('articleId', $articleId)->order('commentDate asc')->paginate(6, false, ['query' => [
             'articleId' => $articleId
         ]]);
 
@@ -271,7 +271,8 @@ class Article extends Controller
 
     }
 
-    function delete_comment(){
+    function delete_comment()
+    {
 
         $commentId = input('id');
 

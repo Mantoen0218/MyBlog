@@ -49,7 +49,7 @@ class Photo extends Controller
 
                     $photourl = "images/" . $info->getSaveName();
 
-                    $res = db('photo')->insert(['photoId' => null, 'photoTitle' => $phototitle, 'photoUrl' => $photourl, 'photoTime' => Date('Y-m-d H:i:s')]);
+                    $res = db('photo')->insert(['photoId' => null, 'photoTitle' => $phototitle, 'photoUrl' => $photourl, 'photoTime' => date('Y-m-d', time())]);
 
                     if ($res != 0) {
 
