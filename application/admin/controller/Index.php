@@ -34,6 +34,9 @@ class Index extends Controller
                     session('loginUser', $arr[0]);
 
                     $this->redirect('admin/Index/index');
+
+                } else{
+                    $this->error('你没有修改任何信息！');
                 }
 
             } else {
