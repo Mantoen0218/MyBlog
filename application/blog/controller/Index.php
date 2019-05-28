@@ -17,7 +17,7 @@ class Index extends Controller
 
         session('type_arr', $type_arr);
 
-        $article_arr = db('article')->order('releaseTime desc')->paginate(5);
+        $article_arr = db('article')->order('releaseTime desc')->paginate(4);
 
         $this->assign('article_arr', $article_arr);
 
@@ -33,7 +33,7 @@ class Index extends Controller
         $article_arr = [];
 
         if ($typeId == '0') {
-            $article_arr = db('article')->order('releaseTime desc')->paginate(5, false, ['query' => [
+            $article_arr = db('article')->order('releaseTime desc')->paginate(4, false, ['query' => [
                 'typeId' => $typeId
             ]]);
         } else {
