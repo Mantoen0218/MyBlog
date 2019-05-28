@@ -79,7 +79,7 @@ class Index extends Controller
 
         $prev = db('article')->where('articleId', '<', $articleId)->order('releaseTime desc')->limit(1)->find();//上一篇文章
 
-        $next = db('article')->where('articleId', '>', $articleId)->order('releaseTime desc')->limit(1)->find();//下一篇文章
+        $next = db('article')->where('articleId', '>', $articleId)->order('releaseTime asc')->limit(1)->find();//下一篇文章
 
         $this->assign('prev', $prev);
         $this->assign('next', $next);

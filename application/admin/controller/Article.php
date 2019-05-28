@@ -80,7 +80,7 @@ class Article extends Controller
                     $article->introduction = input('introduction');
                     $article->content = input('content');
                     $article->cover = "images/" . $info->getSaveName();
-                    $article->releaseTime = date('Y-m-d', time());
+                    $article->releaseTime = date('Y-m-d H:i:s', time());
                     $article->writer = session('loginUser')['nickname'];
 
                     $article->save();
