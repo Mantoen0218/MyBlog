@@ -16,7 +16,7 @@ class Photo extends Controller
 
         session('photo_count', $photo_count);
 
-        $photo_arr = db('photo')->order('photoTitle asc')->paginate(6);
+        $photo_arr = db('photo')->order('photoTitle desc')->paginate(6);
 
         $this->assign('photo_arr', $photo_arr);
 

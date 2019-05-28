@@ -6,10 +6,10 @@ namespace app\home\model;
 
 use think\Model;
 
-class Photo extends Model
+class Timeline extends Model
 {
 
-    protected $photoId = 'photoId';
+    protected $timeId = 'timeId';
 
     //自定义初始化
     protected function initialize()

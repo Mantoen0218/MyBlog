@@ -7,6 +7,7 @@ namespace app\admin\controller;
 use think\Controller;
 use app\home\model\Type;
 use app\home\model\Article as modelArticle;
+use app\home\model\Timeline;
 
 class Article extends Controller
 {
@@ -31,9 +32,9 @@ class Article extends Controller
         $article_arr = [];
 
         if ($typeId == 0) {
-            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->order('releaseTime asc')->paginate(6);
+            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->order('releaseTime desc')->paginate(6);
         } else {
-            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->where('typeId', $typeId)->order('releaseTime asc')->paginate(6);
+            $article_arr = db('article')->where('title', 'like', '%' . $title . '%')->where('typeId', $typeId)->order('releaseTime desc')->paginate(6);
         }
 
         $this->assign('type_arr', $type_arr);
@@ -261,7 +262,7 @@ class Article extends Controller
 
         $articleId = input('articleId');
 
-        $comment_arr = db('comment')->where('articleId', $articleId)->order('commentDate asc')->paginate(6, false, ['query' => [
+        $comment_arr = db('comment')->where('articleId', $articleId)->order('commentDate desc')->paginate(6, false, ['query' => [
             'articleId' => $articleId
         ]]);
 

@@ -17,7 +17,7 @@ class Index extends Controller
 
         session('type_arr', $type_arr);
 
-        $article_arr = db('article')->order('releaseTime asc')->paginate(5);
+        $article_arr = db('article')->order('releaseTime desc')->paginate(5);
 
         $this->assign('article_arr', $article_arr);
 
@@ -33,11 +33,11 @@ class Index extends Controller
         $article_arr = [];
 
         if ($typeId == '0') {
-            $article_arr = db('article')->order('releaseTime asc')->paginate(5, false, ['query' => [
+            $article_arr = db('article')->order('releaseTime desc')->paginate(5, false, ['query' => [
                 'typeId' => $typeId
             ]]);
         } else {
-            $article_arr = db('article')->where('typeId', $typeId)->order('releaseTime asc')->paginate(5, false, ['query' => [
+            $article_arr = db('article')->where('typeId', $typeId)->order('releaseTime desc')->paginate(5, false, ['query' => [
                 'typeId' => $typeId
             ]]);
         }
@@ -51,7 +51,7 @@ class Index extends Controller
     function photo()
     {
 
-        $photo_arr = db('photo')->order('photoTitle asc')->select();
+        $photo_arr = db('photo')->order('photoTitle desc')->select();
 
         $this->assign('photo_arr', $photo_arr);
 
@@ -69,7 +69,7 @@ class Index extends Controller
 
         $articleId = input('articleId');
 
-        $comment = db('comment')->where('articleId', $articleId)->order('commentDate asc')->select();
+        $comment = db('comment')->where('articleId', $articleId)->order('commentDate desc')->select();
 
         for ($i = 0; $i < count($comment); $i++) {
             $comment[$i]['avatar'] = $this->getGravatar($comment[$i]['reviewerMail']);
@@ -77,9 +77,9 @@ class Index extends Controller
 
         $article = db('article')->where('articleId', $articleId)->find();
 
-        $prev = db('article')->where('articleId', '<', $articleId)->order('releaseTime asc')->limit(1)->find();//上一篇文章
+        $prev = db('article')->where('articleId', '<', $articleId)->order('releaseTime desc')->limit(1)->find();//上一篇文章
 
-        $next = db('article')->where('articleId', '>', $articleId)->order('releaseTime asc')->limit(1)->find();//下一篇文章
+        $next = db('article')->where('articleId', '>', $articleId)->order('releaseTime desc')->limit(1)->find();//下一篇文章
 
         $this->assign('prev', $prev);
         $this->assign('next', $next);
